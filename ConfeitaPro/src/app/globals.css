@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background — creme quente, não branco puro */
+    --background: 35 40% 99%;
+    --foreground: 20 25% 15%;
+
+    /* Cards — branco, mas com tom levemente quente percebido pelo contraste */
+    --card: 0 0% 100%;
+    --card-foreground: 20 25% 15%;
+
+    /* Primary — framboesa profunda, premium */
+    --primary: 345 75% 47%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 345 70% 96%;
+
+    /* Secondary — neutro creme */
+    --secondary: 35 25% 95%;
+    --secondary-foreground: 20 25% 20%;
+
+    /* Muted — para texto secundário e backgrounds suaves */
+    --muted: 33 25% 95%;
+    --muted-foreground: 20 12% 42%;
+
+    /* Accent — peach/champagne */
+    --accent: 30 50% 94%;
+    --accent-foreground: 20 25% 20%;
+
+    /* Destructive — vermelho amenizado */
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders e inputs — com tom quente sutil */
+    --border: 30 20% 90%;
+    --input: 30 20% 88%;
+    --ring: 345 75% 47%;
+
+    /* Raio padrão */
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .font-display {
+    font-family: var(--font-display), Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Scrollbar elegante e quente */
+@layer base {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(30 15% 85%);
+    border-radius: 9999px;
+    border: 2px solid hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(30 12% 75%);
+  }
+}
+
+/* Selection com brand color */
+@layer base {
+  ::selection {
+    background-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  /* Texto com gradiente para destaques */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, hsl(345 78% 42%), hsl(335 75% 50%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Padrão de pontos para fundos decorativos */
+  .bg-dots {
+    background-image: radial-gradient(circle, hsl(20 25% 15% / 0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Card com brilho premium */
+  .card-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-shine::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      hsl(0 0% 100% / 0.5) 50%,
+      transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .card-shine:hover::before {
+    transform: translateX(100%);
+  }
+}
